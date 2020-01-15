@@ -30,7 +30,7 @@ namespace typeConversion
             catch (Exception)
             {
 
-                Console.WriteLine("This number ould not be converted to byte");
+                Console.WriteLine("This number could not be converted to byte");
             }
         }
     }
