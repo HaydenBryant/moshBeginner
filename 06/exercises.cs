@@ -57,7 +57,7 @@ namespace arrayListsExercises
         /// </summary>
         public static void Exercise3()
         {
-            var numbers = new List<int>;
+            var numbers = new List<int>();
 
             while(numbers.Count < 5)
             {
@@ -82,9 +82,32 @@ namespace arrayListsExercises
         /// Write a program and ask the user to continuously enter a number or type "Quit" to exit. The list of numbers may 
         /// include duplicates. Display the unique numbers that the user has entered.
         /// </summary>
-        public void Exercise4()
+        public static void Exercise4()
         {
+            var numbers = new List<int>();
+            while (true)
+            {
+                Console.WriteLine("Please enter a number or type 'Quit'to exit: ");
+                var userInput = Console.ReadLine();
 
+                if (userInput.ToLower() == "quit")
+                    break;
+                var number = Convert.ToInt32(userInput);
+                numbers.Add(number);
+            }
+
+            numbers.Sort();
+            for (var i = 1; i < numbers.Count; i++)
+            {
+                if (numbers[i] == numbers[i - 1])
+                {
+                    numbers.Remove(numbers[i]);
+                    i--;
+                }
+            }
+            Console.WriteLine("Unique numbers:");
+            foreach (var number in numbers)
+                Console.WriteLine(number);
         }
 
 
@@ -101,9 +124,10 @@ namespace arrayListsExercises
 
         static void Main(string[] args)
         {
-            arrayListsExercises.Program.Exercise1();
-            arrayListsExercises.Program.Exercise2();
-            arrayListsExercises.Program.Exercise3();
+            //arrayListsExercises.Program.Exercise1();
+            //arrayListsExercises.Program.Exercise2();
+            //arrayListsExercises.Program.Exercise3();
+            arrayListsExercises.Program.Exercise4();
         }
     }
 }
