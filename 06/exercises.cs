@@ -117,17 +117,43 @@ namespace arrayListsExercises
         /// the 3 smallest numbers in the list.
         /// 
         /// </summary>
-        public void Exercise5()
+        public static void Exercise5()
         {
+            var numbers = new List<int>();
 
+            while(true)
+            {
+                Console.WriteLine("Please enter a comma seperated list of numbers: ");
+                var userInput = Console.ReadLine();
+                
+                if(!String.IsNullOrWhiteSpace(userInput))
+                {
+                    if(userInput.Split(",").Length >= 5)
+                    {
+                        foreach (var number in userInput.Split(","))
+                        {
+                            numbers.Add(Convert.ToInt32(number));
+                        }
+
+                        break;
+                    }
+                    Console.WriteLine("Invalid List");
+                }
+            }
+            numbers.Sort();
+            for(var i = 0; i < 3; i++)
+            {
+                Console.WriteLine(numbers[i]);
+            }
         }
-
+        
         static void Main(string[] args)
         {
             //arrayListsExercises.Program.Exercise1();
             //arrayListsExercises.Program.Exercise2();
             //arrayListsExercises.Program.Exercise3();
-            arrayListsExercises.Program.Exercise4();
+            //arrayListsExercises.Program.Exercise4();
+            arrayListsExercises.Program.Exercise5();
         }
     }
 }
