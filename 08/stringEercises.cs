@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
+
 
 namespace stringEercises08
 {
@@ -52,7 +54,27 @@ namespace stringEercises08
         /// </summary>
         public static void Exercise2()
         {
-            
+            Console.WriteLine("Please enter a list of hyphen seperate numbers");
+            var userInput = Console.ReadLine();
+
+            if (String.IsNullOrEmpty(userInput))
+                return;
+
+            var numbers = new List<int>();
+            foreach (var number in userInput.Split('-'))
+            {
+                numbers.Add(Convert.ToInt32(number));
+            }
+            numbers.Sort();
+
+            for(var i = 1; i < numbers.Count; i++)
+            {
+                if(numbers[i] == numbers[i - 1])
+                {
+                    Console.WriteLine("Duplicates");
+                    break;
+                }
+            }
         }
 
         /// <summary>
@@ -62,7 +84,20 @@ namespace stringEercises08
         /// </summary>
         public static void Exercise3()
         {
-            
+            Console.WriteLine("Please enter a time value in the 24 hour format (eg. 19:00): ");
+            var userInput = Console.ReadLine();
+
+            if(String.IsNullOrEmpty(userInput))
+                Console.WriteLine();
+
+            DateTime value;
+
+            if (!DateTime.TryParse(userInput, out value))
+            {
+                Console.WriteLine("Invalid Time");
+            }
+            else
+                Console.WriteLine("OK");
         }
 
         /// <summary>
@@ -74,7 +109,31 @@ namespace stringEercises08
         /// </summary>
         public static void Exercise4()
         {
-            
+            Console.WriteLine("Please enter a few space seperate words: ");
+            var userInput = Console.ReadLine();
+
+            if (String.IsNullOrWhiteSpace(userInput))
+            {
+                Console.WriteLine("Error");
+                return;
+            }
+
+            var variableName = "";
+
+            variableName += char.ToUpper(userInput[0]);
+            for(var i = 1; i < userInput.Length; i++)
+            {
+                if(char.IsWhiteSpace(userInput[i - 1]))
+                {
+                    variableName += char.ToUpper(userInput[i]);
+                }
+                else if(char.IsLetterOrDigit(userInput[i]))
+                {
+                    variableName += char.ToLower(userInput[i]);
+                }
+            }
+
+            Console.WriteLine(variableName);
         }
 
 
@@ -86,15 +145,26 @@ namespace stringEercises08
         /// </summary>
         public static void Exercise5()
         {
-            
+            Console.WriteLine("Please enter an english word: ");
+            var userInput = Console.ReadLine().ToLower();
+
+            var vowelCount = 0;
+            var vowels = new List<char>() { 'a', 'e', 'o', 'u', 'i' };
+
+            for(var i = 0; i < userInput.Length; i++)
+            {
+                if (vowels.Contains(userInput[i]))
+                    vowelCount++;
+            }
+            Console.WriteLine(vowelCount);
         }
         static void Main(string[] args)
         {
-            stringEercises08.Program.Exercise1();
-            //arrayListsExercises.Program.Exercise2();
-            //arrayListsExercises.Program.Exercise3();
-            //arrayListsExercises.Program.Exercise4();
-            //arrayListsExercises.Program.Exercise5();
+            //stringEercises08.Program.Exercise1();
+            //stringEercises08.Program.Exercise2();
+            //stringEercises08.Program.Exercise3();
+            //stringEercises08.Program.Exercise4();
+            //stringEercises08.Program.Exercise5();
         }
     }
 }
