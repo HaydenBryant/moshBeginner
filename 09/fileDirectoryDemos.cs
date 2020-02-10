@@ -49,6 +49,15 @@ namespace fileDemos09
             directoryInfo.GetDirectories();
             //file infor class c# MSDN
 
+            //Path
+            var path = @"c:\projects\CSharpFundamentals\HelloWorld\HelloWorld.sln";
+
+            var dotInde = path.IndexOf('-');
+            var etension = path.Substring(dotInde);
+
+            Console.WriteLine("Extension: " + Path.GetExtension(path));
+            Console.WriteLine(Path.GetFileNameWithoutExtension(path));
+            Console.WriteLine(Path.GetFullPath(path));
         }
     }
 }
